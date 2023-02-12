@@ -77,9 +77,12 @@ public class Mission08_3 {//큰 수 더하기 제출용
 					System.out.println("get0,1 다를 때 합 : "+sum);
 					numArr.get(0).set(i, sum % 10);//ArrayList의 0번지에 합을 10으로 나눈 나머지 저장
 					if (sum >= 10)	olrim = 1;//합이 10 넘어가면 올림에 1대입
-					else			break;			
+					else			olrim = 0;//합이 0이 안 넘어가면 olrim을 0으로 만들어줘야한다. 안그러면 1이 자꾸 추가됨	
 				}
 			}
+			//자리수가 넘어가면 1을 한번 더 더해줘야 하므로 이 코드 필요
+			if (olrim ==1) numArr.get(0).add(1);
+			
 		}
 		// 결과 출력하기
 		System.out.println("=========================");
