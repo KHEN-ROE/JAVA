@@ -9,7 +9,7 @@ public class CircularQueue {
 	private Point[] data; //큐용 배열
 	private int capacity; // 큐의 크기
 	private int front; //맨 처음 요소 커서
-	private int rear; //맨 끝 요서 커서
+	private int rear; //맨 끝 요소 커서
 	private int num; // 현재 데이터 개수
 	
 	
@@ -54,8 +54,8 @@ public class CircularQueue {
 		}
 		else {
 			Point x;
+			front = (front+1) % capacity; 
 			x = data[front];
-        	front = (front+1) % capacity; 
         	num--;
         	
             return x;    
