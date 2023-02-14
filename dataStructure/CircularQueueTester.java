@@ -7,7 +7,7 @@ public class CircularQueueTester {
 
 	public static void main(String[] args) {
 		 Scanner kb = new Scanner(System.in);
-	     CircularQueue c = new CircularQueue(8);    // 최대 8개를 인큐할 수 있는 큐
+	     CircularQueue c = new CircularQueue(4);    // 최대 8개를 인큐할 수 있는 큐
 	     Random random = new Random();
 	     int rndx = 0, rndy = 0;
 	     Point p = null;

@@ -5,41 +5,42 @@ package dataStructure;
 import dataStructure.CircularQueue.EmptyCircularQueueException;
 
 class Point {
-	private int ix;
-	private int iy;
+private int ix;
+private int iy;
 
-	public Point(int x, int y) {
-		ix = x;
-		iy = y;
-	}
-
-	public String toString() {
-		return "<" + ix + ", " + iy + ">";
-	}
-
-	public int getX() {
-		return ix;
-	}
-
-	public int getY() {
-		return iy;
-	}
-
-	public void setX(int x) {
-		ix = x;
-	}
-
-	public void setY(int y) {
-		iy = y;
-	}
+public Point(int x, int y) {
+	ix = x;
+	iy = y;
 }
+
+public String toString() {
+	return "<" + ix + ", " + iy + ">";
+}
+
+public int getX() {
+	return ix;
+}
+
+public int getY() {
+	return iy;
+}
+
+public void setX(int x) {
+	ix = x;
+}
+
+public void setY(int y) {
+	iy = y;
+}
+}
+
 
 public class CircularQueue {
 
 	private Point[] data; //큐용 배열
 	private int capacity; // 큐의 크기
 	private int front; //맨 처음 요소 커서
-	private int rear; //맨 끝 요소 커서
+	private int rear; //맨 끝 요서 커서
 	private int num; // 현재 데이터 개수
 	
 	
@@ -58,7 +59,7 @@ public class CircularQueue {
 	   num = front = rear = 0; //큐가 비어있을 때
 	   this.capacity = capacity; 
 	   try {
-	       data = new Point[capacity];          // 큐 본체용 배열을 생성. Point 클래스 인스턴스로 생성
+	       data = new Point[capacity];          // 큐 본체용 배열을 생성
 	   } catch (OutOfMemoryError e) {        // 생성할 수 없음
 	       capacity = 0;
 	   }
@@ -66,13 +67,13 @@ public class CircularQueue {
 	
 	//원형큐에 데이터 인큐//
 	public Point enque(Point x) throws OverflowCircularQueueException{
-		if((rear+1) % capacity == front) {// 큐가 가득찬 상황
+		if((rear+1) % capacity == front) { //가득찬 경우
 			throw new OverflowCircularQueueException();
 		}
 		else {
-			rear = (rear+1) % capacity; // rear가 처음에 0인 상태에서 +1 하여 capacity로 나누면 1번지부터 차곡차곡 들어감. 배열의 마지막 인덱스(사실 0번지)는 비워두게됨
-			data[rear] = x;//data배열의 0번지부터 x값 하나씩 삽입. 여기서 x는 random number
-			num++;//값이 추가 되면 현재 데이터 개수 추가
+			rear = (rear+1) % capacity;
+			data[rear] = x;
+			num++;
 		}
 		return x;
 	}
@@ -84,11 +85,11 @@ public class CircularQueue {
 		}
 		else {
 			Point x;
-			front = (front+1) % capacity; //이거 연산하면 front + 1 인덱스가 디큐됨
 			x = data[front];
+			front = (front+1) % capacity; 
         	num--;
         	
-            return x;    
+            return x;    //디큐는 맞는 것 같은데 덤프하면 이상하게 나옴. 덤프 코드가 잘못된 듯
 		}
 	}
 	
@@ -98,7 +99,7 @@ public class CircularQueue {
 			throw new EmptyCircularQueueException();
 		}
 		else {
-			return data[rear];//인큐한 데이터 피크
+			return data[rear];
 		}
 	}
 	
@@ -144,7 +145,7 @@ public class CircularQueue {
 		       System.out.println("큐가 비어있습니다.");
 		   else {
 		       for (int i = 0; i < num; i++)
-		           System.out.print(data[(i+rear) % capacity] + " ");//i + rear 인 이유? rear없으면 첫 값 무조건 null뜸, 덤프했더니 null이 뜰 때도 있고 안 뜰때도 있네
+		           System.out.print(data[(i + front) % capacity] + " "); //i + rear 하면 디큐한 데이터가 출력되는데? 다시 짤것
 		       System.out.println();
 		   }
 	}
