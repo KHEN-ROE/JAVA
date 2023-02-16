@@ -2,7 +2,7 @@ package dataStructure;
 
 import java.util.Scanner;
 
-public class Hanoi {
+public class Hanoi { //dd
 
 	public static void move(int n, int x, int y) {
 		if(n>1) {
