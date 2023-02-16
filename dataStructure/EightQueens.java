@@ -86,8 +86,8 @@ class MyStack {
 
 class Point {
 	
-	private int ix;
-	private int iy;
+	public int ix;
+	public int iy;
 	
 	public Point(int x, int y) {
 		ix = x;
@@ -117,16 +117,53 @@ class Point {
 
 public class EightQueens {
 
+	public boolean Checkmove() {
+	        
+	    }
+	
+	public void nextMove(int []d, x, y) {
+		
+	}
+		
+	
+	
 	
 	public static void solveQueen(int [][]data){
-		//backTracking 이용
+//backTracking 이용
+//void NextMove(int[] d, x, y);    // current row에 대한 다음 배치 가능한 모든 column을 조사하고 move[]에 1로 설정
+		
+//boolean CheckMove(int currentRow, int row, int col)    //currentRow에 대하여 queen을 (x,y)에 배치 가능하면 true
+//
+//  => backtracking을 stack을 이용하여 push/pop으로 해결하는 것을 보이는 것임
+//
+// -> 가로, 세로, 대각선에 대한 충돌 체크 함수 코딩
+//  boolean CheckMove(x,y) {
+//	checkRow(x);
+//	checkCol(y);
+//	checkDiagSW(x,y); //x++, y-- or x--, y++ where 0<= x,y <= 7
+//	checkDiagSE(x,y); //x++, y++ or x--, y--
+//단위 함수를 만들어서 생각을 해야지 한꺼번에 하면 안되고. nextmove가 checkmove 부르고?. checkmove가 checkDiagSw 부른다.
+	//체크는 true, false 로한다. 
+	int count=0;
+	
+		
+	while(count<8) {
+		
+		//퀸을 배치하고 스택에 (Point 타입)푸시.
+		s.push();
+		
 		
 	}
 	
 	public static void main(String[] args) {
 		int [][]data = new int[8][8];
-		//배열 초기화 어떻게 할건지? 초기값 뭘로?
+		for(int i=0; i<data.length; i++) {
+			for(int j=0; j<data[0].length; j++) {
+				data[i][j] = 0;
+			}
+		}
 		
+		MyStack s = new MyStack(8);
 		
 		solveQueen(data);
 
