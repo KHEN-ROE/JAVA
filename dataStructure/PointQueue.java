@@ -1,7 +1,4 @@
-package testPackage;
-
-
-
+package dataStructure;
 
 import dataStructure.PointQueue.EmptyPointQueueException;
 import dataStructure.PointQueue.OverflowPointQueueException;
@@ -70,16 +67,6 @@ public Point peek() throws EmptyPointQueueException {
 //--- 큐를 비움 ---//
 public void clear() {
    num = front = rear = 0;
-}
-
-//--- 큐에서 x를 검색하여 인덱스(찾지 못하면 –1)를 반환 ---//
-public int indexOf(Point x) {
-   for (int i = 0; i < num; i++) {
-       int idx = (i + front) % capacity;
-       if (data[idx] == x)                // 검색 성공
-           return idx;
-   }
-   return -1;                            // 검색 실패
 }
 
 //--- 큐의 크기를 반환 ---//

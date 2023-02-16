@@ -115,11 +115,11 @@ class Point {
 	}
 }
 
-public class EightQueen {
+public class EightQueens {
 
 	
 	public static void solveQueen(int [][]data){
-		
+		//backTracking 이용
 		
 	}
 	
