@@ -4,40 +4,9 @@ package dataStructure;
 //앞쪽에서 디큐로 발생한 배열의 빈 공간을 활용 할 수가 없음
 import dataStructure.CircularQueue.EmptyCircularQueueException;
 
-//class Point {
-//private int ix;
-//private int iy;
-//
-//public Point(int x, int y) {
-//	ix = x;
-//	iy = y;
-//}
-//
-//public String toString() {
-//	return "<" + ix + ", " + iy + ">";
-//}
-//
-//public int getX() {
-//	return ix;
-//}
-//
-//public int getY() {
-//	return iy;
-//}
-//
-//public void setX(int x) {
-//	ix = x;
-//}
-//
-//public void setY(int y) {
-//	iy = y;
-//}
-//}
-
-
 public class CircularQueue {
 
-	private Point[] data; //큐용 배열
+	private Point[] data; //큐용 배열선언. 생성은 아직
 	private int capacity; // 큐의 크기
 	private int front; //맨 처음 요소 커서
 	private int rear; //맨 끝 요소 커서

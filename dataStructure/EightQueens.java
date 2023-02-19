@@ -1,172 +1,137 @@
 package dataStructure;
 
-class MyStack {
-	public Point []data; // 스택용 배열 선언. 생성은 아직 안함
-	public int capacity; // 스택 용량
-	int top; // 스택 포인터
-	
-	//--- 실행시 예외: 스택이 비어있음 ---//
-	public class EmptyMyStackException extends RuntimeException {//내부 클래스
-	   public EmptyMyStackException() { }
-	}
-
-	//--- 실행시 예외: 스택이 가득 찼음 ---//
-	public class OverflowMyStackException extends RuntimeException {//내부 클래스
-	   public OverflowMyStackException() { }
-	}
-	
-	//--- 생성자(constructor) ---//
-	public MyStack(int capacity) {
-	   top = 0;
-	   this.capacity = capacity; 
-	   try {
-	       data = new Point[capacity];          // 스택 본체용 배열을 생성
-	   } catch (OutOfMemoryError e) {        // 생성할 수 없음
-	       capacity = 0;
-	   }
-	}
-	
-	//--- 스택에 x를 푸시 ---//
-    public Point push(Point x) throws OverflowMyStackException {
-        if (top >= capacity)                                    // 스택이 가득 참
-            throw new OverflowMyStackException();
-        return data[top++] = x;
-    }
-    
-  //--- 스택에서 데이터를 팝(정상에 있는 데이터를 꺼냄) ---//
-    public Point pop() throws EmptyMyStackException {
-        if (top <= 0)                                          // 스택이 빔
-            throw new EmptyMyStackException();
-        return data[--top];
-    }
-    
-    //--- 스택에서 데이터를 피크(peek, 정상에 있는 데이터를 들여다봄) ---//
-    public Point peek() throws EmptyMyStackException {
-        if (top <= 0)                                        // 스택이 빔
-            throw new EmptyMyStackException();
-        return data[top - 1];
-    }
-
-    //--- 스택을 비움 ---//
-    public void clear() {
-    	top = 0;
-    }
- 
-    //--- 스택의 크기를 반환 ---//
-    public int getCapacity() {
-        return capacity;
-    }
-
-    //--- 스택에 쌓여있는 데이터 갯수를 반환 ---//
-    public int size() {
-        return top;
-    }
-
-    //--- 스택이 비어있는가? ---//
-    public boolean isEmpty() {
-        return top <= 0;
-    }
-
-    //--- 스택이 가득 찼는가? ---//
-    public boolean isFull() {
-        return top >= capacity;
-    }
-	
-  //--- 스택 안의 모든 데이터를 바닥 → 정상 순서로 표시 ---//
-    public void dump() {
-        if (top <= 0)
-            System.out.println("스택이 비어있습니다.");
-        else {
-            for (int i = 0; i < top; i++)
-                System.out.print(data[i] + " ");
-            System.out.println();
-        }
-    }
-}
-
-class Point {
-	
-	public int ix;
-	public int iy;
-	
-	public Point(int x, int y) {
-		ix = x;
-		iy = y;
-	}
-	
-	public String toString() {
-		return "<" + ix + ", " + iy + ">";
-	}
-	
-	public int getX() {
-		return ix;
-	}
-	
-	public int getY() {
-		return iy;
-	}
-	
-	public void setX(int x) {
-		ix = x;
-	}
-	
-	public void setY(int y) {
-		iy = y;
-	}
-}
-
 public class EightQueens {
+	//92개의 해를 보여주려면?
+	public static void SolveQueen(int[][] d) {
+		int count = 0; //스택에 있는 퀸의 개수 카운트. 퀸은 8개까지 배치가능
+		int ix = 0, iy = 0; //행 과 열. iy는 여기서 한번 쓰고 안 씀
+		MyStack st = new MyStack(100);
+		Point p = new Point(ix, iy);//Point 객체 생성하고 생성자에 초깃값 0,0 전달
+		d[ix][iy] = 1; // 체스판 0,0에 퀸 배치하고 1로 저장
+		System.out.println("처음 퀸의 위치 : " + p);
+		st.push(p); //퀸을 배치하면 스택에 저장
+		count++; // 스택에 배치한 퀸의 개수(Point type)
+		System.out.println("스택에 있는 첫 퀸의 개수 : " + count);
 
-	public boolean Checkmove() {
-	        
-	    }
-	
-	public void nextMove(int []d, x, y) {
-		
-	}
-		
-	
-	
-	
-	public static void solveQueen(int [][]data){
-//backTracking 이용
-//void NextMove(int[] d, x, y);    // current row에 대한 다음 배치 가능한 모든 column을 조사하고 move[]에 1로 설정
-		
-//boolean CheckMove(int currentRow, int row, int col)    //currentRow에 대하여 queen을 (x,y)에 배치 가능하면 true
-//
-//  => backtracking을 stack을 이용하여 push/pop으로 해결하는 것을 보이는 것임
-//
-// -> 가로, 세로, 대각선에 대한 충돌 체크 함수 코딩
-//  boolean CheckMove(x,y) {
-//	checkRow(x);
-//	checkCol(y);
-//	checkDiagSW(x,y); //x++, y-- or x--, y++ where 0<= x,y <= 7
-//	checkDiagSE(x,y); //x++, y++ or x--, y--
-//단위 함수를 만들어서 생각을 해야지 한꺼번에 하면 안되고. nextmove가 checkmove 부르고?. checkmove가 checkDiagSw 부른다.
-	//체크는 true, false 로한다. 
-	int count=0;
-	
-		
-	while(count<8) {
-		
-		//퀸을 배치하고 스택에 (Point 타입)푸시.
-		s.push();
-		
-		
-	}
-	
-	public static void main(String[] args) {
-		int [][]data = new int[8][8];
-		for(int i=0; i<data.length; i++) {
-			for(int j=0; j<data[0].length; j++) {
-				data[i][j] = 0;
+		// count가 8이 될때까지 반복
+		while (count < d.length) {
+			ix++; // 행변경
+			int cy = 0; // 행변경 후 항상 0번째 열부터 체크 필요 //cy는 행에 해당하는 열을 의미하는 변수
+
+			// 행 반복하며 퀸 배치가능여부 판단
+			while (ix < d.length) {//행을 순회하면서 체크하겠다는 의미
+				cy = NextMove(d, ix, cy); // 배치가능: 열 인덱스, 배치불가: d[0].length 반환. 체스판, 현재행, 현재열 전달. NextMove 한번 호출하면 아래에 있는 모든 메소드 다 실행함. 즉 한 행에 해당하는 모든 열 체크. 모든 메소드 조건 충족하면 nextCol 반환하고 그걸 받아서 cy에 저장
+				// 한 행에 해당하는 열을 다 체크하고 돌아가서 밑의 while문 부터 다시 실행
+				//다시 돌아왔으니, 앞에와 마찬가지로 다시 Point 객체 생성하여 퀸의 좌표 생성자에 전달. 체스판에 퀸 배치하고 1로 저장. 스택에 퀸 좌표 푸시. 퀸의 개수 카운트
+				while (cy < d[0].length) { // else문의 cy++ 때문에 필요
+					Point px = new Point(ix, cy); //다시 Point 객체 생성하여 생성자에 현재의 ix, cy값(퀸의 좌표) 전달
+					st.push(px); // 스텍에 퀸의 좌표 저장
+					System.out.println("퀸의 위치 좌표값 : "+px);
+					count++; // 현재 퀸의 개수 카운트
+					System.out.println("퀸의 개수: "+count);
+					d[ix][cy] = 1; // 현재 좌표에 1저장. 즉 퀸 배치
+					break; //퀸 배치하면 브레이크하고 다음행 체크
+				}//배치 못했는데 cy가 0~7이면 브레이크
+				if (cy != d[0].length) { //d[0].length는 8. 즉 cy가 0~7이면 break. 즉 체스판 범위 안이면 중단하고 첫 while문으로 가서 다음행 체크
+					break;
+				} 
+				else { //cy가 8이면(범위 벗어나면) 이전에 배치했던 퀸을 pop한다. cy가 8이 되는 경우? 유효한 포지션이 없어서 nextCol이 계속 ++되는 경우임.
+					p = st.pop();
+					ix = p.getX();
+					cy = p.getY();
+					count--;
+					d[ix][cy] = 0; //0으로 만들고
+					cy++; //다음 컬럼으로 포인터 이동. 다시 체크
+				}
 			}
 		}
-		
-		MyStack s = new MyStack(8);
-		
-		solveQueen(data);
-
 	}
 
+	public static int NextMove(int[][] d, int row, int col) {// 다음 row에 대하여 이동할 col을 조사하는 메소드
+		int nextCol = col; // 다음 col로 넘어가기 위한 선언
+		while (nextCol < d[0].length) // 인덱스 수만큼 반복
+			if (CheckMove(d, row, nextCol)) // 현재 셀 체크가능여부 판단. checkMove가 true면 nextCol 리턴. 그걸 cy에 저장
+				return nextCol; // 체크할 수 있으면 col 반환
+			else
+				nextCol++; //배치 불가하면 옆의 열을 체크하는 것임. 그리고 다시 배치가능 여부 판단.
+		return d[0].length; // 체크할 수 있는 셀 없으면 -1 반환
+	}
+	
+	public static boolean CheckMove(int[][] d, int x, int y) {// 모든 조건을 만족할 때 true 리턴.
+		if (checkRow(d, x, y) && checkCol(d, x, y) && checkDiagSW(d, x, y) && checkDiagSE(d, x, y)) {
+			return true;
+		}
+		return false;//기본적으로 false 리턴하는데 if절 만족해야만 true 리턴함
+	}
+	
+	public static boolean checkRow(int[][] d, int cx, int cy) {//행에서 1이 있는지 체크
+		for (int i = 0; i < cy; i++) // i < cy인 이유? 해당하는 열의 값 만큼 반복. 열이 2면 2번만 실행
+			if (d[cx][i] == 1)
+				return false;
+		return true;
+	}
+
+	public static boolean checkCol(int[][] d, int cx, int cy) {//열에서 1이 있는지 체크
+		for (int i = 0; i < cx; i++) { //i < cx인 이유? 해당하는 행의 값만큼 반복. 1행이면 1번만 실행 
+			if (d[i][cy] == 1)
+				return false;
+		}
+		return true;
+	}
+
+	public static boolean checkDiagSW(int[][] d, int cx, int cy) { // x++, y-- or x--, y++ where 0<= x,y <= 7
+		int x = cx, y = cy;
+		while (x < d.length - 1 && y > 0) {
+			x++;
+			y--;
+			if (d[x][y] == 1)
+				return false;
+		}
+		x = cx;
+		y = cy;
+		while (x > 0 && y < d[0].length - 1) {
+			x--;
+			y++;
+			if (d[x][y] == 1)
+				return false;
+		}
+		return true;
+	}
+
+	public static boolean checkDiagSE(int[][] d, int cx, int cy) {// x++, y++ or x--, y--
+		int x = cx, y = cy;
+		while (x < d.length - 1 && y < d[0].length - 1) {
+			x++;
+			y++;
+			if (d[x][y] == 1)
+				return false;
+		}
+		x = cx;
+		y = cy;
+		while (x > 0 && y > 0) {
+			x--;
+			y--;
+			if (d[x][y] == 1)
+				return false;
+		}
+		return true;
+	}
+
+	
+	public static void main(String[] args) {
+		int n=8;
+		int[][] data = new int[n][n];
+		for (int i = 0; i < data.length; i++)
+			for (int j = 0; j < data[0].length; j++)
+				data[i][j] = 0;
+
+		SolveQueen(data);
+
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				System.out.print(" " + data[i][j]);
+			}
+			System.out.println();
+		}
+	}
 }
