@@ -1,13 +1,10 @@
 package dataStructure;
 
-
-
-
 public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 구할 수 있다. ix iy를 호출하는 데서 파라미터를 받아서 바꿔가면서 64이상의 해 구하기 
 	//체스판을 그려놓고 이해할 것
 	//92개의 해를 보여주려면???
 	public static void SolveQueen(int[][] d, int ix1, int iy1) {
-
+		
 		int count = 0; //스택에 있는 퀸의 개수 카운트. 퀸은 8개까지 배치가능
 		int ix=ix1;
 		int iy=iy1; //열의 값이 바뀌면 여러 해를 구할 수 있다.
@@ -53,9 +50,6 @@ public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 �
 				}	
 			}	
 			if (count == d.length) {
-				int solutionCount = 0;
-				solutionCount++;
-	            System.out.println("Solution " + solutionCount + ":");
 	            for (int i = 0; i < d.length; i++) {
 	                for (int j = 0; j < d[0].length; j++) {
 	                    System.out.print(" " + d[i][j]);
@@ -64,6 +58,7 @@ public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 �
 	            }
 	            System.out.println();
 	        }
+			
 		}
 	}
 
@@ -143,13 +138,14 @@ public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 �
 		int[][] data = new int[n][n];
 		
 		for(int k=0; k<data.length; k++) {
-			System.out.println("k = "+k);
+			System.out.println((k+1)+"번째 정답");
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[0].length; j++) {
 				data[i][j]=0;
 			}
 		}
-		SolveQueen(data, 0, k);
+				SolveQueen(data, 0, k);
+				
 		}
 	}
 }
