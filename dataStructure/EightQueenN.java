@@ -1,7 +1,7 @@
 package dataStructure;
 
 //연습5-10
-//８퀸 문제를 비재귀적으로 풀기(배치 상황을 □와 ■으로 출력)
+//８퀸 문제를 비재귀적으로 풀기(배치 상황을 0과 1로 출력)
 //교재 연습문제 해답임
 	
 public class EightQueenN {
