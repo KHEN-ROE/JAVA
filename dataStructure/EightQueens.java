@@ -1,6 +1,7 @@
 package dataStructure;
 
 public class EightQueens {
+	//체스판을 그려놓고 보면 이해가 쉽다
 	//92개의 해를 보여주려면?
 	public static void SolveQueen(int[][] d) {
 		int count = 0; //스택에 있는 퀸의 개수 카운트. 퀸은 8개까지 배치가능
