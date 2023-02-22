@@ -1,13 +1,13 @@
 package dataStructure;
 
-public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 구할 수 있다. ix iy를 호출하는 데서 파라미터를 받아서 바꿔가면서 64이상의 해 구하기 
+public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 구할 수 있다 
 	//체스판을 그려놓고 이해할 것
 	//92개의 해를 보여주려면???
-	public static void SolveQueen(int[][] d, int ix1, int iy1) {
+	public static void SolveQueen(int[][] d, int row, int col) {
 		
 		int count = 0; //스택에 있는 퀸의 개수 카운트. 퀸은 8개까지 배치가능
-		int ix=ix1;
-		int iy=iy1; //열의 값이 바뀌면 여러 해를 구할 수 있다.
+		int ix=row;
+		int iy=col; //열의 값이 바뀌면 여러 해를 구할 수 있다.
 		
 		MyStack st = new MyStack(100);
 		Point p = new Point(ix, iy);//Point 객체 생성하고 생성자에 초깃값 0,0 전달
@@ -25,9 +25,7 @@ public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 �
 			// 행 반복하며 퀸 배치가능여부 판단
 			while (ix < d.length) {//행을 순회하면서 체크하겠다는 의미
 				cy = NextMove(d, ix, cy); // 배치가능: 열 인덱스, 배치불가: d[0].length 반환. 체스판, 현재행, 현재열 전달. NextMove 한번 호출하면 아래에 있는 모든 메소드 다 실행함. 즉 한 행에 해당하는 모든 열 체크. 모든 메소드 조건 충족하면 nextCol 반환하고 그걸 받아서 cy에 저장
-				// 한 행에 해당하는 열을 다 체크하고 돌아가서 밑의 while문 부터 다시 실행
-				//다시 돌아왔으니, 앞에와 마찬가지로 다시 Point 객체 생성하여 퀸의 좌표 생성자에 전달. 체스판에 퀸 배치하고 1로 저장. 스택에 퀸 좌표 푸시. 퀸의 개수 카운트
-				if (cy < d[0].length) { // else문의 cy++ 때문에 필요
+				if (cy < d[0].length) {
 					Point px = new Point(ix, cy); //다시 Point 객체 생성하여 생성자에 현재의 ix, cy값(퀸의 좌표) 전달
 					st.push(px); // 스텍에 퀸의 좌표 저장
 //					System.out.println("퀸의 위치 좌표값 : "+px);
@@ -35,17 +33,13 @@ public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 �
 //					System.out.println("퀸의 개수: "+count);
 					d[ix][cy] = 1; // 현재 좌표에 1저장. 즉 퀸 배치
 					break; //퀸 배치하면 브레이크하고 다음행 체크
-				}//배치 못했는데 cy가 0~7이면 브레이크
-				else 
-					//if (cy != d[0].length) { //d[0].length는 8. 즉 cy가 0~7이면 break. 즉 체스판 범위 안이면 중단하고 첫 while문으로 가서 다음행 체크
-					//break;
-					{ //cy가 8이면(범위 벗어나면) 이전에 배치했던 퀸을 pop한다. cy가 8이 되는 경우? 유효한 포지션이 없어서 nextCol이 계속 ++되는 경우임.
+				}
+				else{ //cy가 8이면(범위 벗어나면) 이전에 배치했던 퀸을 pop한다. cy가 8이 되는 경우? 유효한 포지션이 없어서 nextCol이 계속 ++되는 경우임.
 					p = st.pop();
 					ix = p.getX();
 					cy = p.getY();
 					count--;
 					d[ix][cy] = 0; //0으로 만들고
-//					System.out.println("ix = " + ix + " cy = " + cy);
 					cy++; //다음 컬럼으로 포인터 이동. 다시 체크
 				}	
 			}	
@@ -145,7 +139,6 @@ public class EightQueens {//열을 바꿔가면서 하면 여러개의 해를 �
 			}
 		}
 				SolveQueen(data, 0, k);
-				
 		}
 	}
 }
