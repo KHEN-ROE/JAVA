@@ -1,5 +1,5 @@
 package dataStructure;
-
+//디버깅을 하라!!
 class Point {
 	private int x;
 	private int y;
@@ -20,8 +20,8 @@ class Point {
 }
 
 class MyStack {
-	private int top;
-	private Point[] data;
+	private int top; //스택 포인터
+	private Point[] data; //스택용 배열
 	
 	public MyStack() {
 		top = 0;
@@ -46,8 +46,50 @@ class MyStack {
 
 public class EightQueen {
 	
-	
-	
+	public static void solveQueen(int row, int col, int[][]arr) {
+		MyStack s = new MyStack();
+		Point p = new Point(0,0); //0,0으로 초기화 
+		int x = p.getX(); //초깃값 0
+		int y = p.getY(); //초깃값 0
+		int flag = 0; //true 탈출하기 위해 나중에 선언했다.
+		while(true) {
+			while(x<row) { //2중 for문과 같은 의미라고 생각하면 된다
+				while(y<col) { //2중 for문과 같은 의미라고 생각하면 된다
+					if(checkMove(x,y,arr)) {
+						arr[x][y] = 1;
+						s.push(new Point(x,y));
+						y = 0; //밑에 칸 맨 첫번 째 열로 가겠다
+						break; //남은 y를 검사할 필요가 없으므로 브레이크. 열 검사 while문 탈출
+					}
+					else y++;//유효한 포지션 아니면 다음 컬럼으로 감. 모든 컬럼 검사했는데 유효한 자리 없다? 이전에 찍은 포인트 pop하고 그 옆을 컬럼을 검사한다. 찍었던 그 자리가 맞는 자리가 아니라는 뜻
+				}
+				x++; //다음 행 검사. 
+				
+				if(y>=col) { //컬럼의 포인터가 체스판 벗어나면 팝을 함.
+					if(!s.isEmpty()) {//들어 있으면 실행
+						p = s.pop();//이전 포지션 팝
+						x = p.getX();//x좌표
+						y = p.getY();//y좌표
+						arr[x][y]=0;//1 이었던 걸 다시 0으로 바꿔줌
+						y++; //이전 포지션의 다음 컬럼 검사
+					}
+					else {
+						flag=1;
+						break;
+					}
+					
+				}
+			}
+//			if(s.isEmpty()) break; //이렇게 해도 됨. true를 빠져나오기 위해서 정답 다출력하고, 모든 포지션 pop하고 나서 탈출
+			if(flag==1) break; //true를 빠져나오기 위해서 정답 다출력하고, 모든 포지션 pop하고 나서 탈출
+			printBoard(row, col, arr); //정답을 출력하고 체스판을 초기화해야하므로 아래의 코드실행
+			p = s.pop();//이전 포지션 팝
+			x = p.getX();//x좌표
+			y = p.getY();//y좌표
+			arr[x][y]=0;//1 이었던 걸 다시 0으로 바꿔줌
+			y++; //이전 포지션의 다음 컬럼 검사
+		}
+	}
 	
 	public static boolean checkMove(int x, int y, int[][]arr) {
 		if(!checkRow(x,arr)) return false;
@@ -120,52 +162,6 @@ public class EightQueen {
 		return true;
 	}
 	
-	
-	
-	public static void solveQueen(int row, int col, int[][]arr) {
-		MyStack s = new MyStack();
-		Point p = new Point(0,0); //0,0으로 초기화 
-		int x = p.getX();
-		int y = p.getY();
-		int flag = 0;
-		while(true) {
-			while(x<row) {
-				while(y<col) {
-					if(checkMove(x,y, arr)) {
-						arr[x][y] = 1;
-						s.push(new Point(x,y));
-						y = 0; //밑에 칸 맨 첫번 째 열로 가겠다
-						break; //남은 y를 검사할 필요가 없으므로 브레이크
-					}
-					y++;//유효한 포지션 아니면 다음 컬럼으로 감. 모든 컬럼 검사했는데 유효한 자리 없다? 이전에 찍은 포인트 pop하고 그 옆을 컬럼을 검사한다. 찍었던 그 자리가 맞는 자리가 아니라는 뜻
-				}
-				x++; //다음 행 검사. 
-				if(y>=col) { //컬럼의 포인터가 체스판 벗어나면 팝을 함.
-					if(!s.isEmpty()) {//들어 있으면 실행
-						p = s.pop();//이전 포지션 팝
-						x = p.getX();//x좌표
-						y = p.getY();//y좌표
-						arr[x][y]=0;//1 이었던 걸 다시 0으로 바꿔줌
-						y++; //이전 포지션의 다음 컬럼 검사
-					}
-					else {
-						flag=1;
-						break;
-					}
-					
-				}
-			}
-//			if(s.isEmpty()) break; //이렇게 해도 됨
-			if(flag==1) break;
-			printBoard(row, col, arr);
-			p = s.pop();//이전 포지션 팝
-			x = p.getX();//x좌표
-			y = p.getY();//y좌표
-			arr[x][y]=0;//1 이었던 걸 다시 0으로 바꿔줌
-			y++; //이전 포지션의 다음 컬럼 검사
-		}
-	}
-	
 	static int num = 0; //전역변수 static 이유? static 안붙이면 1 계속 나옴
 	
 	public static void printBoard(int row, int col, int[][]arr) {
@@ -180,8 +176,8 @@ public class EightQueen {
 	}
 	
 	public static void main(String[] args) {
-		int row=8;
-		int col=8;
+		int row=4;
+		int col=4;
 		int [][]arr = new int [row][col];
 		
 		for(int i=0; i<arr.length; i++) {
