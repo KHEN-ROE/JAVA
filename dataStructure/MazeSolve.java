@@ -77,15 +77,29 @@ public class MazeSolve {
 		maze[1][1]=4;
 
 		while(!s.isEmpty()) {
-			temp = s.pop();
+			temp = s.pop(); //왜 바로 pop?
 			int i = temp.x; //pop을 한 x좌표
 			int j = temp.y; //pop을 한 x좌표
 			int d = temp.dir; // 
 			
+			//8개의 방향 모두 체크
 			while(d<moves.length) {
 				int g = i+moves[d][0];
 				int h = j+moves[d][1];
 				
+				//갈 수 있는 경로면 스택에 푸시
+				if((maze[g][h]==0) && (mark[g][h])==0) {
+					mark[g][h]=1; maze[g][h]=4;
+					Items temp1 = new Items(i,j,d);
+					s.push(temp1); //그 위치 푸시하고
+					i=g;
+					j=h;
+					d=0; //왜 d가 0?
+				}
+				//막혀있으면
+				else d++; // 다음 경로 검사
+				
+				//정답 출력 문
 				if((g==m-1) && (h==p-1)) {
 	                System.out.println("exit: " + (m - 1) + " " + (p - 1));
 	                System.out.println("쥐가 간 경로 : 4");
@@ -100,15 +114,7 @@ public class MazeSolve {
 	                return;
 				}
 				
-				if((maze[g][h]==0) && (mark[g][h])==0) {
-					mark[g][h]=1; maze[g][h]=4;
-					Items temp1 = new Items(i,j,d);
-					s.push(temp1);
-					i=g;
-					j=h;
-					d=0;
-				}
-				else d++;
+				
 			}
 			
 		}
