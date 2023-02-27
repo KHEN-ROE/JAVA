@@ -117,15 +117,13 @@ public class EightQueen {
 	
 	
 	public static boolean checkDiagSW(int x, int y, int arr[][]) {
-		int dx=x;
+		int dx=x; //밑에 dx=x 쓰려고 dx선언한 듯
 		int dy=y;
 		while(dx>=0 && dx<arr[y].length && dy>=0 && dy< arr[x].length) {
 			if(arr[dx][dy]==1) 
 				return false;
 				dx--;
 				dy--;
-			
-			
 		}
 		dx=x; //제자리로 돌아와서 다시 체크함.
 		dy=y;
@@ -176,8 +174,8 @@ public class EightQueen {
 	}
 	
 	public static void main(String[] args) {
-		int row=4;
-		int col=4;
+		int row=8;
+		int col=8;
 		int [][]arr = new int [row][col];
 		
 		for(int i=0; i<arr.length; i++) {
