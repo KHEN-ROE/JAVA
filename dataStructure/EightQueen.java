@@ -1,10 +1,10 @@
 package dataStructure;
 //디버깅을 하라!!
-class Point {
+class Point3 {
 	private int x;
 	private int y;
 	
-	public Point(int x, int y) {
+	public Point3(int x, int y) {
 		this.x=x;
 		this.y=y;
 	}
@@ -19,20 +19,20 @@ class Point {
 	
 }
 
-class MyStack {
+class MyStack3 {
 	private int top; //스택 포인터
-	private Point[] data; //스택용 배열
+	private Point3[] data; //스택용 배열
 	
-	public MyStack() {
+	public MyStack3() {
 		top = 0;
-		data = new Point[100];
+		data = new Point3[100];
 	}
 	
-	public void push(Point p) {
+	public void push(Point3 p) {
 		data[top++] = p; //넣고 증가. 첫 포인터가 0 가리키므로
 	}
 	
-	public Point pop() {
+	public Point3 pop() {
 		return data[--top];
 	}
 	
@@ -47,8 +47,8 @@ class MyStack {
 public class EightQueen {
 	
 	public static void solveQueen(int row, int col, int[][]arr) {
-		MyStack s = new MyStack();
-		Point p = new Point(0,0); //0,0으로 초기화 
+		MyStack3 s = new MyStack3();
+		Point3 p = new Point3(0,0); //0,0으로 초기화 
 		int x = p.getX(); //초깃값 0
 		int y = p.getY(); //초깃값 0
 		int flag = 0; //true 탈출하기 위해 나중에 선언했다.
@@ -57,7 +57,7 @@ public class EightQueen {
 				while(y<col) { //2중 for문과 같은 의미라고 생각하면 된다
 					if(checkMove(x,y,arr)) {
 						arr[x][y] = 1;
-						s.push(new Point(x,y));
+						s.push(new Point3(x,y));
 						y = 0; //밑에 칸 맨 첫번 째 열로 가겠다
 						break; //남은 y를 검사할 필요가 없으므로 브레이크. 열 검사 while문 탈출
 					}
