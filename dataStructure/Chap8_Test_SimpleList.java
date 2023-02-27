@@ -19,12 +19,11 @@ class Node {
 
 class LinkedList {
 	
-	Node first;
+	Node first; //머리 노드
 	
 	public LinkedList() {
 		first = null;
 	}
-	
 	
 	public boolean Delete(int element) //delete the element
 	{
@@ -37,11 +36,11 @@ class LinkedList {
 				if(q==null) { //element가 머리 노드면
 					first = p.link; //p.~~ 인 이유 : Node가 참조 타입임. 즉 p는 참조변수임
 				}else { //element가 머리 노드 아닐 때
-					q.link = p.link;
+					q.link = p.link; //q.link 에 null 저장. 즉 링크 끊음
 				}
 				return true;
 			}
-			q=p;
+			q=p; //오름차순 정렬위한 코드임 디버깅해보면 앎
 			p=p.link;
 		}
 		return false; // element 못 찾으면
@@ -50,14 +49,15 @@ class LinkedList {
 	
 	public void Add(int element) //임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다 
 	{
-		Node newNode = new Node(element);
+		Node newNode = new Node(element); // Node 객체 생성
 //		this.first = newNode;
 		Node p = first, q = null; // 이러면 p가 null이 됨. 따라서 데이터 삽입 불가. q는 꼬리라서 null?
 		if(p==null) {
-			first = newNode;
+			first = newNode; //오름차순으로 정렬하려면 비교할 데이터가 필요함. 초깃값 설정해줌
 		}
 		while(p != null) {
-			if(p.data > element) { //p.data가 더 크면
+			//오름차순으로 정렬하기 위한 코드(정수 값 비교)
+			if(p.data > element) { //근데 어떻게 data에 접근했지? 왜 p.data 가능? 디버깅해보면 p가 참조변수라 data,link필드에 접근가능한 듯
 				newNode.link=p;
 //				q.link = newNode;
 				if(q==null) first = newNode;
@@ -155,16 +155,21 @@ public static void main(String[] args) {
 	  	         data = (int) (d * 50);
 	  	         l.Add(data);            
 	                   break;
+	                   
 	           case Delete :                          // 머리 노드 삭제
+	        	 System.out.println("삭제할 값 입력 : ");
 	          	 int num = sc.nextInt();
 	          	 boolean result = l.Delete(num);
 	          	 if(result) System.out.println("삭제된 데이터는 " + num);
 	          	 else System.out.println("데이터 없음");
 	                 	break;
+	                 	
 	           case Show :                           // 꼬리 노드 삭제
 	                  l.Show();
 	                  break;
+	                  
 	           case Search :                           // 회원 번호 검색
+	        	System.out.println("검색할 값 입력 : ");
 	       		int n = sc.nextInt();
 	              boolean result1 = l.Search(n);
 	                  if (result1 == false)
@@ -172,6 +177,7 @@ public static void main(String[] args) {
 	                  else
 	                      System.out.println("검색 값 = " + n + "데이터가 존재합니다.");
 	                   break;
+	                   
 	           case Exit :                           // 꼬리 노드 삭제
 	                  break;
 	          }
