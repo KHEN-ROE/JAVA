@@ -51,13 +51,13 @@ class LinkedList {
 	{
 		Node newNode = new Node(element); // Node 객체 생성
 //		this.first = newNode;
-		Node p = first, q = null; // 이러면 p가 null이 됨. 따라서 데이터 삽입 불가. q는 꼬리라서 null?
+		Node p = first, q = null; // p,q가 뭘 의미? / 이러면 p가 null이 됨. 따라서 데이터 삽입 불가. q는 꼬리라서 null?
 		if(p==null) {
 			first = newNode; //오름차순으로 정렬하려면 비교할 데이터가 필요함. 초깃값 설정해줌
 		}
 		while(p != null) {
 			//오름차순으로 정렬하기 위한 코드(정수 값 비교)
-			if(p.data > element) { //근데 어떻게 data에 접근했지? 왜 p.data 가능? 디버깅해보면 p가 참조변수라 data,link필드에 접근가능한 듯
+			if(p.data > element) { //왜 p.data인가? 근데 어떻게 data에 접근했지? 왜 p.data 가능? 디버깅해보면 p가 참조변수라 data,link필드에 접근가능한 듯
 				newNode.link=p;
 //				q.link = newNode;
 				if(q==null) first = newNode;
