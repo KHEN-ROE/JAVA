@@ -147,7 +147,7 @@ public static void main(String[] args) {
 	Scanner sc = new Scanner(System.in);
 	int data = 0;
 	System.out.println("inserted");
-		l.Show();		
+		
 	      do {
 	          switch (menu = SelectMenu()) {	             
 	           case Add :                           // 머리노드 삽입
