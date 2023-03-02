@@ -22,24 +22,8 @@ class SimpleObject implements Comparable<SimpleObject> {
 		this.name = name;
 	}
 	
-	public SimpleObject(String no2) {
-		this.no=no2;
-	}
-
-	public String getNo() {
-		return no;
-	}
-
-	public void setNo(String no) {
-		this.no = no;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public SimpleObject(String no1) {
+		this.no=no1;
 	}
 
 	// --- 문자열 표현을 반환 ---//
@@ -79,10 +63,10 @@ class SimpleObject implements Comparable<SimpleObject> {
 	}
 	
 
-	public boolean equals(SimpleObject o) {
-		if(this.no.compareTo(o.no)==0) return true;
-		else return false;
-	}
+//	public boolean equals(SimpleObject o) {
+//		if(this.no.compareTo(o.no)==0) return true;
+//		else return false;
+//	}
 	
 }
 class Node1 {
@@ -130,7 +114,7 @@ class LinkedList1 {
 	    System.out.println();
 	}
 	
-	//comparator 있어야할 거 같은데
+	
 	public void Add(SimpleObject element) //임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다 
 	{
 		Node1 newNode = new Node1(element);
@@ -155,10 +139,10 @@ class LinkedList1 {
 		}
 	}
 	
-	public boolean Search(SimpleObject data) { // 전체 리스트를 순서대로 출력한다.
+	public boolean Search(SimpleObject element) { // 전체 리스트를 순서대로 출력한다.
 		 Node1 current = first;
 		    while (current != null) {
-		        if (current.data.compareTo(data)==0) {
+		        if (current.data.compareTo(element)==0) {
 		            return true;
 		        }
 		        current = current.link;
@@ -216,7 +200,7 @@ public class Test8_Test_SimpleObjectList {
        Menu menu;                                // 메뉴 
 		System.out.println("Linked List");
 		LinkedList1 l = new LinkedList1();
-		try (Scanner sc = new Scanner(System.in)) {
+		Scanner sc = new Scanner(System.in);
 			SimpleObject data = null;
 			System.out.println("inserted");
 			 	
@@ -238,7 +222,7 @@ public class Test8_Test_SimpleObjectList {
 			        	 data = new SimpleObject(no1);
 //	            	 System.out.println("삭제할 이름 입력 : ");
 //	            	 String name1 = sc.nextLine();
-			        	 boolean result = l.Delete(data); //여기 고치고 
+			        	 boolean result = l.Delete(data);  
 			        	 if (result) System.out.println("삭제된 데이터는 " + no1 + "입니다.");
 			        	 else		 System.out.println("데이터없음");
 			                break;
@@ -253,15 +237,15 @@ public class Test8_Test_SimpleObjectList {
 			        	 	data = new SimpleObject(no2);
 			                boolean result1 = l.Search(data); 
 			                if (result1 == false)
-			                    System.out.println("검색 값 = " + data + "데이터가 없습니다.");
+			                    System.out.println("검색 값 = " + no2 + "데이터가 없습니다.");
 			                else
-			                    System.out.println("검색 값 = " + data + "데이터가 존재합니다.");
+			                    System.out.println("검색 값 = " + no2 + "데이터가 존재합니다.");
 			                 break;
 			         case Exit :                           // 꼬리 노드 삭제
 			                break;
 			        }
 			    } while (menu != Menu.Exit);
-		}
+		
 		
 	}
 }
