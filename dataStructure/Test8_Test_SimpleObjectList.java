@@ -201,8 +201,8 @@ public class Test8_Test_SimpleObjectList {
 		System.out.println("Linked List");
 		LinkedList1 l = new LinkedList1();
 		Scanner sc = new Scanner(System.in);
-			SimpleObject data = null;
-			System.out.println("inserted");
+		SimpleObject data = null;
+		System.out.println("inserted");
 			 	
 			    do {
 			        switch (menu = SelectMenu()) {	             
@@ -227,7 +227,7 @@ public class Test8_Test_SimpleObjectList {
 			        	 else		 System.out.println("데이터없음");
 			                break;
 			                
-			         case Show :                           // 꼬리 노드 삭제
+			         case Show :                           
 			                l.Show();
 			                break;
 			                
