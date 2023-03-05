@@ -30,6 +30,7 @@ class LinkedList {
 		//링크를 끊는 걸 구현.
 		//element와 비교해서 존재하면 p가 가르키는 node 삭제
 //		Node newNode = new Node(element);
+		//포인터를 처음에 머리노드에 할당
 		Node p = first, q = null;
 		while(p != null) {
 			if(p.data == element) { //일치하면
