@@ -18,17 +18,17 @@ class SimpleObject implements Comparable<SimpleObject> {
 	private String name; // 이름
 
 	public SimpleObject(String no, String name) {
-		this.no = no;
+		this.setNo(no);
 		this.name = name;
 	}
 	
 	public SimpleObject(String no1) {
-		this.no=no1;
+		this.setNo(no1);
 	}
 
 	// --- 문자열 표현을 반환 ---//
 	public String toString() {
-		return "(" + no + ") " + name;
+		return "(" + getNo() + ") " + name;
 	}
 
 	// --- 회원번호로 순서를 매기는 comparator ---//
@@ -37,7 +37,7 @@ class SimpleObject implements Comparable<SimpleObject> {
 
 	private static class NoOrderComparator implements Comparator<SimpleObject> {
 		public int compare(SimpleObject d1, SimpleObject d2) {
-			return (d1.no.compareTo(d2.no)>0 ) ? 1 : (d1.no.compareTo(d2.no)<0 ) ? -1 : 0;
+			return (d1.getNo().compareTo(d2.getNo())>0 ) ? 1 : (d1.getNo().compareTo(d2.getNo())<0 ) ? -1 : 0;
 		}
 	}
 
@@ -53,13 +53,21 @@ class SimpleObject implements Comparable<SimpleObject> {
 
 	@Override
 	public int compareTo(SimpleObject o) {
-		if(this.no.compareTo(o.no)>0) {
+		if(this.getNo().compareTo(o.getNo())>0) {
 			return 1;
 		}
-		else if (this.no.compareTo(o.no)<0) {
+		else if (this.getNo().compareTo(o.getNo())<0) {
 			return -1;
 		}
 		else return 0;
+	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
 	}
 	
 
