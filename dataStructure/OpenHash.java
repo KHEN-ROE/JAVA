@@ -52,9 +52,9 @@ public class OpenHash<K,V> {
  //--- 생성자(constructor) ---//
  public OpenHash(int size) {
      try {
-         table = new Bucket[size];
+         table = new Bucket[size]; // 배열을 생성한 것
          for (int i = 0; i < size; i++)
-             table[i] = new Bucket<K,V>();
+             table[i] = new Bucket<K,V>(); //각 테이블의 원소가 버킷 객체를 갖고 있다
          this.size = size;
      } catch (OutOfMemoryError e) {        // 테이블을 생성할 수 없음
          this.size = 0;

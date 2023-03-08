@@ -23,19 +23,6 @@ public class SimpleObjectChainHashTester {
 	         return name;
 	     }
 
-	     //--- 데이터를 읽어 들임 ---//
-	     void scanData(String guide, int sw) {
-	         System.out.println(guide + "할 데이터를 입력하세요.");
-
-	         if ((sw & NO) == NO) {
-	             System.out.print("번호: ");
-	             no = stdIn.nextInt();
-	         }
-	         if ((sw & NAME) == NAME) {
-	             System.out.print("이름: ");
-	             name = stdIn.next();
-	         }
-	     }
 	 }
 
 	 //--- 메뉴 열거형 ---//
@@ -78,31 +65,34 @@ public class SimpleObjectChainHashTester {
 	 }
 
 	 public static void main(String[] args) {
-	     Menu menu;                                // 메뉴 
-	     Data data;                                // 추가용 데이터 참조
-	     Data temp = new Data();        // 읽어 들일 데이터
-
-	     ChainHash<Integer, Data> hash = new ChainHash<Integer, Data>(13);
+		 Scanner sc = new Scanner(System.in);
+	     Menu menu;                                
+	     SimpleObject3 data = null;
+	     SimpleObjectChainHash hash = new SimpleObjectChainHash(13); //테이블 생성
 
 	     do {
 	         switch (menu = SelectMenu()) {
 	          case ADD :                               // 추가
-	                 data = new Data();
-	                 data.scanData("추가", Data.NO | Data.NAME);
-	                  hash.add(data.keyCode(), data);
+	        	  	 System.out.println("추가할 번호 입력");
+		        	 String no = sc.next();			        				     
+	            	 System.out.println("추가할 이름 입력");
+	            	 String name = sc.next();
+	                 data = new SimpleObject3(no, name);
+
+	                  hash.add(data, SimpleObject3.NO_ORDER);
 	                  break;
 
 	          case REMOVE :                       // 삭제
-	                  temp.scanData("삭제", Data.NO);
-	                  hash.remove(temp.keyCode());
+
+//	                  hash.remove(temp.keyCode());
 	                  break;
 
 	          case SEARCH :                       // 검색
-	                 temp.scanData("검색", Data.NO);
-	                  Data t = hash.search(temp.keyCode());
-	                  if (t != null)
-	                      System.out.println("그 키를 갖는 데이터는 " + t + "입니다.");
-	                 else
+	
+//	                  Data t = hash.search(temp.keyCode());
+//	                  if (t != null)
+//	                      System.out.println("그 키를 갖는 데이터는 " + t + "입니다.");
+//	                 else
 	                      System.out.println("해당 데이터가 없습니다.");
 	                  break;
 
