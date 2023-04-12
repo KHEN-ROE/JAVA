@@ -2,7 +2,7 @@ package dataStructure;
 
 import java.util.Scanner;
 
-//정수를 저정하는 이진트리 만들기 실습. insert와 search 구현. delete는 어려워서 시간나면
+//정수를 저장하는 이진트리 만들기 실습. insert와 search 구현. delete는 어려워서 시간나면
 class TreeNode {
 	TreeNode LeftChild;
 	int data;
